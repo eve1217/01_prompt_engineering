@@ -39,22 +39,37 @@
         const portfolioGrid = document.querySelector('.portfolio__grid');
         if (!portfolioGrid) return;
 
+        portfolioGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #666;">Loading portfolio...</p>';
+
         try {
-            // 로딩 상태 표시
-            portfolioGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #666;">Loading portfolio...</p>';
+            // Firestore 우선 로드
+            if (typeof firebase !== 'undefined' && firebase.firestore) {
+                const snapshot = await db.collection('portfolios').orderBy('order', 'asc').get();
 
-            // 로컬 JSON 파일에서 데이터 로드
-            const response = await fetch('data/portfolio.json');
+                if (!snapshot.empty) {
+                    const items = snapshot.docs.map(doc => doc.data());
+                    portfolioCache = { list: items, details: {} };
+                    items.forEach(item => { portfolioCache.details[item.idx] = item; });
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch portfolio data');
+                    console.log('Portfolio loaded from Firestore:', items.length, 'items');
+                    renderPortfolioItems(items);
+                    initPortfolioHover();
+                    return;
+                }
             }
+        } catch (firestoreError) {
+            console.warn('Firestore unavailable, falling back to local JSON:', firestoreError);
+        }
+
+        // 폴백: 로컬 JSON 파일
+        try {
+            const response = await fetch('data/portfolio.json');
+            if (!response.ok) throw new Error('Failed to fetch portfolio data');
 
             const data = await response.json();
             portfolioCache = data;
 
-            console.log('Portfolio Data loaded:', data.list.length, 'items');
-
+            console.log('Portfolio loaded from JSON:', data.list.length, 'items');
             const items = data.list;
 
             if (items && items.length > 0) {
@@ -62,10 +77,7 @@
             } else {
                 portfolioGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #666;">No portfolio items found.</p>';
             }
-
-            // 포트폴리오 호버 효과 재초기화
             initPortfolioHover();
-
         } catch (error) {
             console.error('Error loading portfolio:', error);
             portfolioGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #f00;">Failed to load portfolio items.</p>';
