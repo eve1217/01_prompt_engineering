@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSTONES Portfolio - 20년의 경험 위에 새로운 기술을 더하는 크리에이티브 에이전시">
+    <title>BSTONES Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===================================================
+           BSTONES Portfolio - CSS Stylesheet
+           =================================================== */
+
+        /* ----- CSS Custom Properties ----- */
+        :root {
+            --color-black: #000;
+            --color-white: #fff;
+            --color-text-primary: #181818;
+            --color-text-secondary: #606060;
+            --color-text-muted: rgba(96, 96, 96, 0.5);
+            --color-text-light: #666;
+            --color-text-lighter: #aaa;
+            --color-bg-title: rgba(96, 96, 96, 0.2);
+            --color-bg-title-dark: rgba(58, 58, 58, 0.2);
+            --color-accent-purple: #a98aca;
+            --color-accent-blue: #2f00ff;
+            --color-bg-portfolio: rgba(181, 200, 255, 0.15);
+            --color-border: #606060;
+            --font-roboto: 'Roboto', sans-serif;
+            --font-noto: 'Noto Sans KR', sans-serif;
+            --container-width: 1650px;
+            --header-height: 80px;
+            --transition-base: 0.3s ease;
+        }
+
+        /* ----- Reset & Base ----- */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-roboto), var(--font-noto);
+            background-color: var(--color-white);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        /* ----- Header ----- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: var(--container-width);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .header__left,
+        .header__right {
+            font-family: var(--font-roboto);
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--color-text-secondary);
+            width: 269px;
+            line-height: 21.155px;
+        }
+
+        .header__right {
+            text-align: right;
+        }
+
+        .header__logo {
+            font-size: 0;
+        }
+
+        .header__logo img {
+            width: 150px;
+            height: 27px;
+            object-fit: contain;
+        }
+
+        /* ----- Section Common ----- */
+        .section-title--bg {
+            font-family: var(--font-roboto);
+            font-size: 100px;
+            font-weight: 800;
+            color: var(--color-bg-title);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .section-divider {
+            width: calc(100% - 46px);
+            height: 1px;
+            background: rgba(96, 96, 96, 0.3);
+            border: none;
+            margin: 0 23px;
+        }
+
+        /* ----- Hero Section ----- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 770px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e8eaf6 0%, #f5f5f5 50%, #e3f2fd 100%);
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            padding-top: 175px;
+            text-align: center;
+        }
+
+        .hero__icon {
+            width: 184px;
+            height: 184px;
+            margin-bottom: 100px;
+            background: linear-gradient(135deg, #c5cae9 0%, #e8eaf6 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero__icon-inner {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #9fa8da 0%, #c5cae9 100%);
+            border-radius: 15px;
+        }
+
+        .hero__title {
+            font-family: var(--font-noto);
+            font-size: 40px;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            letter-spacing: -4px;
+            line-height: 1.175;
+            margin-bottom: 27px;
+        }
+
+        .hero__subtitle {
+            font-family: var(--font-noto);
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--color-text-primary);
+            letter-spacing: -1.8px;
+            line-height: 1.75;
+            margin-bottom: 33px;
+        }
+
+        .hero__cta {
+            position: absolute;
+            top: 676px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(200, 210, 255, 0.5) 50%, rgba(180, 190, 255, 0.6) 100%);
+            border: none;
+            border-radius: 90px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            transition: all var(--transition-base);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero__cta:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(200, 210, 255, 0.7) 50%, rgba(180, 190, 255, 0.8) 100%);
+            transform: translateX(-50%) translateY(-3px);
+        }
+
+        .hero__cta span {
+            font-family: var(--font-roboto);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--color-accent-purple);
+        }
+
+        .hero__cta-arrow {
+            font-size: 18px;
+            color: var(--color-accent-purple);
+        }
+
+        /* ----- About Section ----- */
+        .about {
+            padding: 70px 0 0;
+            position: relative;
+        }
+
+        .about__header {
+            padding: 0 40px;
+            margin-bottom: 60px;
+        }
+
+        .about__header .section-title--bg {
+            color: var(--color-bg-title-dark);
+            width: 479px;
+            height: 210px;
+        }
+
+        .about__subtitle {
+            font-family: var(--font-roboto);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            line-height: 1.25;
+            margin-top: -160px;
+            margin-left: 532px;
+            width: 572px;
+        }
+
+        .about__list {
+            padding: 100px 23px 60px;
+        }
+
+        .about__item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .about__item--left {
+            padding-left: 312px;
+        }
+
+        .about__item--right {
+            text-align: right;
+            padding-right: 337px;
+        }
+
+        .about__tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5.5px 12px;
+            border: 0.5px solid var(--color-border);
+            border-radius: 25px;
+            font-family: var(--font-noto);
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--color-text-secondary);
+            letter-spacing: -1.6px;
+            margin-bottom: 10px;
+        }
+
+        .about__item-title {
+            font-family: var(--font-noto);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -2.4px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about__item--left .about__item-title {
+            justify-content: flex-start;
+        }
+
+        .about__item--right .about__item-title {
+            justify-content: flex-end;
+        }
+
+        .about__dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .about__dot--purple {
+            background: linear-gradient(135deg, #d4a5ff 0%, #a98aca 100%);
+        }
+
+        .about__dot--blue {
+            background: linear-gradient(135deg, #87ceeb 0%, #60a5fa 100%);
+        }
+
+        .about__item-desc {
+            font-family: var(--font-noto);
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--color-text-primary);
+            letter-spacing: -1.8px;
+            line-height: 1.75;
+            max-width: 692px;
+        }
+
+        .about__item--right .about__item-desc {
+            margin-left: auto;
+        }
+
+        .about__item-desc strong {
+            font-weight: 500;
+        }
+
+        /* ----- History Section ----- */
+        .history {
+            padding: 0 0 100px;
+        }
+
+        .history__header {
+            padding: 0 40px;
+            margin-bottom: 60px;
+        }
+
+        .history__header .section-title--bg {
+            width: 572px;
+            height: 93px;
+        }
+
+        .history__subtitle-en {
+            font-family: var(--font-roboto);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-top: -70px;
+            margin-left: 580px;
+            width: 572px;
+        }
+
+        .history__content {
+            text-align: center;
+            padding: 160px 0 60px;
+        }
+
+        .history__desc {
+            font-family: var(--font-noto);
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--color-text-primary);
+            letter-spacing: -1.8px;
+            line-height: 1.75;
+            margin-bottom: 20px;
+        }
+
+        .history__collab {
+            font-family: var(--font-roboto);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-bottom: 30px;
+        }
+
+        .history__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 176px;
+            height: 48px;
+            padding: 10px;
+            background: var(--color-black);
+            border: 2px solid var(--color-white);
+            border-radius: 100px;
+            color: var(--color-white);
+            font-family: var(--font-roboto);
+            font-size: 14px;
+            font-weight: 400;
+            transition: all var(--transition-base);
+        }
+
+        .history__btn:hover {
+            background: #333;
+            transform: translateY(-3px);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 60px 100px 0;
+            margin-top: 60px;
+        }
+
+        .timeline__line {
+            position: absolute;
+            top: 64px;
+            left: 100px;
+            right: 100px;
+            height: 1px;
+            background: var(--color-text-light);
+        }
+
+        .timeline__list {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .timeline__item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .timeline__dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-text-light);
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .timeline__year {
+            font-family: var(--font-noto);
+            font-size: 10px;
+            font-weight: 300;
+            color: var(--color-text-light);
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        .timeline__text {
+            font-family: var(--font-noto);
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--color-text-primary);
+            letter-spacing: -1.2px;
+            line-height: 1.5;
+        }
+
+        /* ----- Portfolio Section ----- */
+        .portfolio {
+            position: relative;
+            padding: 41px 0 102px;
+            background: var(--color-bg-portfolio);
+        }
+
+        .portfolio__header {
+            position: relative;
+            z-index: 1;
+            padding: 0 40px;
+            margin-bottom: 60px;
+        }
+
+        .portfolio__header .section-title--bg {
+            width: 564px;
+            height: 93px;
+        }
+
+        .portfolio__subtitle {
+            font-family: var(--font-roboto);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-top: -70px;
+            margin-left: 564px;
+            width: 572px;
+        }
+
+        /* Portfolio Grid */
+        .portfolio__grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 300px);
+            gap: 40px;
+            justify-content: center;
+            padding: 100px 0 0;
+        }
+
+        /* Portfolio Card */
+        .portfolio-card {
+            width: 300px;
+            transition: transform var(--transition-base);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-card__thumb {
+            width: 300px;
+            height: 300px;
+            border-radius: 30px 30px 0 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .portfolio-card__thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-base);
+        }
+
+        .portfolio-card:hover .portfolio-card__thumb img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-card__info {
+            background: var(--color-white);
+            padding: 20px;
+            border-radius: 0 0 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: 192px;
+        }
+
+        .portfolio-card__desc {
+            font-family: var(--font-noto);
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--color-black);
+            letter-spacing: -2px;
+            line-height: 1.3;
+        }
+
+        .portfolio-card__date {
+            font-family: var(--font-roboto);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-lighter);
+        }
+
+        .portfolio-card__name {
+            font-family: var(--font-roboto);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-black);
+        }
+
+        /* ----- Animations ----- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* ----- Responsive ----- */
+        @media screen and (max-width: 1400px) {
+            .section-title--bg {
+                font-size: 70px;
+            }
+            
+            .portfolio__grid {
+                grid-template-columns: repeat(2, 300px);
+            }
+            
+            .about__subtitle,
+            .history__subtitle-en,
+            .portfolio__subtitle {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .header__left,
+            .header__right {
+                font-size: 12px;
+                width: auto;
+            }
+            
+            .section-title--bg {
+                font-size: 50px;
+            }
+            
+            .hero__title {
+                font-size: 28px;
+                letter-spacing: -2px;
+            }
+            
+            .about__item--left,
+            .about__item--right {
+                padding-left: 50px;
+                padding-right: 50px;
+                text-align: left;
+            }
+            
+            .about__item--right .about__item-title {
+                justify-content: flex-start;
+            }
+            
+            .about__item--right .about__item-desc {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header {
+                padding: 0 15px;
+            }
+            
+            .header__logo img {
+                width: 100px;
+            }
+            
+            .section-title--bg {
+                font-size: 36px;
+            }
+            
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 100px 20px 150px;
+            }
+            
+            .hero__content {
+                padding-top: 50px;
+            }
+            
+            .hero__icon {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 50px;
+            }
+            
+            .hero__title {
+                font-size: 22px;
+            }
+            
+            .hero__cta {
+                position: relative;
+                top: auto;
+                margin-top: 30px;
+            }
+            
+            .portfolio__grid {
+                grid-template-columns: 1fr;
+                padding: 50px 20px 0;
+                justify-items: center;
+            }
+            
+            .timeline {
+                padding: 60px 20px 0;
+                overflow-x: auto;
+            }
+            
+            .timeline__list {
+                min-width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <p class="header__left">BSTONES Portfolio</p>
+        <h1 class="header__logo">
+            <a href="/">BSTONES</a>
+        </h1>
+        <p class="header__right">©2026 BSTONES. All Rights Reserved.</p>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-label="메인 비주얼">
+            <div class="hero__content">
+                <figure class="hero__icon">
+                    <div class="hero__icon-inner"></div>
+                </figure>
+                
+                <h2 class="hero__title">
+                    비스톤스만의 차별화된 크리에티브 전략과<br>
+                    효율적인 제작 프로세스의 결과물.
+                </h2>
+                
+                <p class="hero__subtitle">
+                    비스톤스만의 크리에이티브한 시선과 실행력으로<br>
+                    다양한 프로젝트를 통해 검증된 결과를 만들어왔습니다.<br>
+                    그 과정과 완성도를 담은 포트폴리오를 소개합니다.
+                </p>
+
+                <a href="#portfolio" class="hero__cta">
+                    <span>PORTFOLIO</span>
+                    <span class="hero__cta-arrow">↓</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" aria-labelledby="about-title">
+            <header class="about__header">
+                <h2 id="about-title" class="section-title--bg">We are BSTONES.</h2>
+                <p class="about__subtitle">
+                    Full of energy, drive, and passion, our team aims<br>
+                    to deliver the most outstanding work in every moment.
+                </p>
+            </header>
+
+            <hr class="section-divider" aria-hidden="true">
+
+            <div class="about__list">
+                <!-- Item 1 -->
+                <article class="about__item about__item--right">
+                    <span class="about__tag">크리에티브 전략</span>
+                    <h3 class="about__item-title">
+                        아이디어를 현실로 만드는 IT 파트너
+                        <span class="about__dot about__dot--purple"></span>
+                    </h3>
+                    <p class="about__item-desc">
+                        비스톤스만의 차별화된 크리에티브 전략과<br>
+                        효율적인 제작 프로세스를 통해 광고주의 브랜드 가치를 향상시켜드립니다.
+                    </p>
+                </article>
+
+                <!-- Item 2 -->
+                <article class="about__item about__item--left">
+                    <span class="about__tag">경험의 중요성</span>
+                    <h3 class="about__item-title">
+                        <span class="about__dot about__dot--blue"></span>
+                        생각을 설계하고, 경험을 만듭니다
+                    </h3>
+                    <p class="about__item-desc">
+                        20년 간 축적된 경험과 변화 대응 역량을 바탕으로,<br>
+                        <strong>AI와 다양한 기술 툴을 적극 활용</strong>하여 효율적인 조직 운영과 고객 맞춤형 서비스를 제공합니다.<br>
+                        다양한 고객 경험에서 얻은 노하우로, 신뢰할 수 있는 파트너가 되어드립니다.
+                    </p>
+                </article>
+
+                <!-- Item 3 -->
+                <article class="about__item about__item--right">
+                    <span class="about__tag">믿음의 결과로</span>
+                    <h3 class="about__item-title">
+                        창의적인 생각을, 믿을 수 있는 결과로
+                        <span class="about__dot about__dot--purple"></span>
+                    </h3>
+                    <p class="about__item-desc">
+                        기술은 끊임없이 변화하지만, 신뢰와 책임의 가치는 변하지 않습니다.<br>
+                        쌓아온 경험과 유연한 대응력을 바탕으로,<br>
+                        고객이 안심하고 맡길 수 있는 IT 파트너로서 함께합니다.
+                    </p>
+                </article>
+
+                <!-- Item 4 -->
+                <article class="about__item about__item--left">
+                    <span class="about__tag">경험의 중요성</span>
+                    <h3 class="about__item-title">
+                        <span class="about__dot about__dot--blue"></span>
+                        함께 성장한 비스톤스
+                    </h3>
+                    <p class="about__item-desc">
+                        2007년 설립된 비스톤스는 기획, 디자인, 개발/퍼블리싱 사업부를 중심으로<br>
+                        구성된 디지털 콘텐츠 에이전시입니다.<br><br>
+                        2022년, 비스톤스는 크리에이티브에 대한 열정을 가진<br>
+                        100여 명의 스텝과 함께 하고 있습니다.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section class="history" aria-labelledby="history-title">
+            <header class="history__header">
+                <h2 id="history-title" class="section-title--bg">Since 2007.</h2>
+                <p class="history__subtitle-en">Rooted in experience, we continue to evolve with change.</p>
+            </header>
+
+            <hr class="section-divider" aria-hidden="true">
+
+            <div class="history__content">
+                <p class="history__desc">
+                    20년의 경험 위에 새로운 기술을 더합니다.<br>
+                    비스톤스는 최신 기술과 툴을 창의적으로 결합하여<br>
+                    지금도 끊임없이 확장되는 크리에이티브 에이전시입니다.
+                </p>
+                <p class="history__collab">We collaborate with these departments.</p>
+                
+                <a href="#" class="history__btn">Company Website →</a>
+            </div>
+
+            <!-- Timeline -->
+            <nav class="timeline" aria-label="연혁 타임라인">
+                <div class="timeline__line"></div>
+                <ol class="timeline__list">
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2007년</time>
+                        <span class="timeline__text">비스톤스 설립</span>
+                    </li>
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2008년</time>
+                        <span class="timeline__text">삼성전자 · 동아제약 · 대한항공<br>운영 및 제작</span>
+                    </li>
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2010년</time>
+                        <span class="timeline__text">삼성전자 글로벌 구축 및 운영<br>삼성닷컴 갤럭시 스토어</span>
+                    </li>
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2021년</time>
+                        <span class="timeline__text">SKT RCS 구축</span>
+                    </li>
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2023년</time>
+                        <span class="timeline__text">안랩몰 사이트 구축</span>
+                    </li>
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2024년</time>
+                        <span class="timeline__text">SKT 고도몰 구축</span>
+                    </li>
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2025년</time>
+                        <span class="timeline__text">신한카드 운영</span>
+                    </li>
+                    <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <time class="timeline__year">2026년</time>
+                        <span class="timeline__text">비스톤스 AI 자체 서비스<br>구축 및 운영</span>
+                    </li>
+                </ol>
+            </nav>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio" aria-labelledby="portfolio-title">
+            <header class="portfolio__header">
+                <h2 id="portfolio-title" class="section-title--bg">portfolio.</h2>
+                <p class="portfolio__subtitle">Introducing Our Portfolio</p>
+            </header>
+
+            <hr class="section-divider" aria-hidden="true">
+
+            <ul class="portfolio__grid">
+                <li class="portfolio__item">
+                    <article class="portfolio-card">
+                        <figure class="portfolio-card__thumb"></figure>
+                        <div class="portfolio-card__info">
+                            <p class="portfolio-card__desc">아이더 홈페이지 구축<br>그 외 배너 제작 및 운영</p>
+                            <time class="portfolio-card__date">2024.10</time>
+                            <h3 class="portfolio-card__name">Eider</h3>
+                        </div>
+                    </article>
+                </li>
+                <li class="portfolio__item">
+                    <article class="portfolio-card">
+                        <figure class="portfolio-card__thumb"></figure>
+                        <div class="portfolio-card__info">
+                            <p class="portfolio-card__desc">아이더 홈페이지 구축<br>그 외 배너 제작 및 운영</p>
+                            <time class="portfolio-card__date">2024.10</time>
+                            <h3 class="portfolio-card__name">Eider</h3>
+                        </div>
+                    </article>
+                </li>
+                <li class="portfolio__item">
+                    <article class="portfolio-card">
+                        <figure class="portfolio-card__thumb"></figure>
+                        <div class="portfolio-card__info">
+                            <p class="portfolio-card__desc">아이더 홈페이지 구축<br>그 외 배너 제작 및 운영</p>
+                            <time class="portfolio-card__date">2024.10</time>
+                            <h3 class="portfolio-card__name">Eider</h3>
+                        </div>
+                    </article>
+                </li>
+                <li class="portfolio__item">
+                    <article class="portfolio-card">
+                        <figure class="portfolio-card__thumb"></figure>
+                        <div class="portfolio-card__info">
+                            <p class="portfolio-card__desc">아이더 홈페이지 구축<br>그 외 배너 제작 및 운영</p>
+                            <time class="portfolio-card__date">2024.10</time>
+                            <h3 class="portfolio-card__name">Eider</h3>
+                        </div>
+                    </article>
+                </li>
+                <li class="portfolio__item">
+                    <article class="portfolio-card">
+                        <figure class="portfolio-card__thumb"></figure>
+                        <div class="portfolio-card__info">
+                            <p class="portfolio-card__desc">아이더 홈페이지 구축<br>그 외 배너 제작 및 운영</p>
+                            <time class="portfolio-card__date">2024.10</time>
+                            <h3 class="portfolio-card__name">Eider</h3>
+                        </div>
+                    </article>
+                </li>
+                <li class="portfolio__item">
+                    <article class="portfolio-card">
+                        <figure class="portfolio-card__thumb"></figure>
+                        <div class="portfolio-card__info">
+                            <p class="portfolio-card__desc">아이더 홈페이지 구축<br>그 외 배너 제작 및 운영</p>
+                            <time class="portfolio-card__date">2024.10</time>
+                            <h3 class="portfolio-card__name">Eider</h3>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        // 스크롤 애니메이션
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -100px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-on-scroll');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about__item, .portfolio__item, .timeline__item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        // 헤더 스크롤 효과
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.5)';
+                header.style.boxShadow = '0 4px 4px rgba(0, 0, 0, 0.05)';
+            }
+        }, { passive: true });
+
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (!targetElement) return;
+                e.preventDefault();
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                window.scrollTo({
+                    top: targetElement.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

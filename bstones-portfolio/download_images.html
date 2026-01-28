@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSTONES Portfolio - 이미지 다운로드</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #f5f5f5; 
+            padding: 40px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 { 
+            color: #333; 
+            margin-bottom: 10px; 
+        }
+        .notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .notice strong { color: #856404; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .card img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            background: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .card a {
+            display: inline-block;
+            background: #4a90d9;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .card a:hover { background: #357abd; }
+        .filename {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🖼️ BSTONES Portfolio 이미지 다운로드</h1>
+    
+    <div class="notice">
+        <strong>⚠️ 중요:</strong> 이 페이지는 Figma 데스크탑 앱에서 해당 디자인 파일이 열려있을 때만 작동합니다.
+        <br>Figma 파일을 먼저 열어주세요!
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>헤더 로고</h3>
+            <span class="filename">logo.png</span>
+            <br>
+            <img src="http://localhost:3845/assets/b1fd520f743915401ed850b67168174525960b13.png" alt="logo">
+            <br>
+            <a href="http://localhost:3845/assets/b1fd520f743915401ed850b67168174525960b13.png" download="logo.png">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>Hero 버블 배경</h3>
+            <span class="filename">bubble_bg.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/4086e4b76a5cd7da1190bc400bb0a4a6fdaca01a.svg" alt="bubble_bg">
+            <br>
+            <a href="http://localhost:3845/assets/4086e4b76a5cd7da1190bc400bb0a4a6fdaca01a.svg" download="bubble_bg.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>Hero 아이콘</h3>
+            <span class="filename">hero_icon.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/fac8aa07e766cc620e39938cb0dc8651a445a623.svg" alt="hero_icon">
+            <br>
+            <a href="http://localhost:3845/assets/fac8aa07e766cc620e39938cb0dc8651a445a623.svg" download="hero_icon.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>버튼 화살표</h3>
+            <span class="filename">arrow.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/fa6d415c3b7ee2952c9652cb8cd3bbca2866f94f.svg" alt="arrow">
+            <br>
+            <a href="http://localhost:3845/assets/fa6d415c3b7ee2952c9652cb8cd3bbca2866f94f.svg" download="arrow.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>연혁 아이콘</h3>
+            <span class="filename">history_icon.png</span>
+            <br>
+            <img src="http://localhost:3845/assets/9f29fe242d964b32ae099ff697b5a719f33618d9.png" alt="history_icon">
+            <br>
+            <a href="http://localhost:3845/assets/9f29fe242d964b32ae099ff697b5a719f33618d9.png" download="history_icon.png">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>포트폴리오 썸네일 1</h3>
+            <span class="filename">portfolio_thumb_01.png</span>
+            <br>
+            <img src="http://localhost:3845/assets/965aef555c917a33d85aaad1429f355c32fa5c03.png" alt="portfolio_thumb_01">
+            <br>
+            <a href="http://localhost:3845/assets/965aef555c917a33d85aaad1429f355c32fa5c03.png" download="portfolio_thumb_01.png">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>포트폴리오 썸네일 2</h3>
+            <span class="filename">portfolio_thumb_02.png</span>
+            <br>
+            <img src="http://localhost:3845/assets/6119f8bdf0d232b8d92e62439d542cbb4f2a86eb.png" alt="portfolio_thumb_02">
+            <br>
+            <a href="http://localhost:3845/assets/6119f8bdf0d232b8d92e62439d542cbb4f2a86eb.png" download="portfolio_thumb_02.png">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>포트폴리오 버블 배경 1</h3>
+            <span class="filename">bubble_bg_1.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/e74a050c06217e3fe006fdb9eb560544a08fe6cc.svg" alt="bubble_bg_1">
+            <br>
+            <a href="http://localhost:3845/assets/e74a050c06217e3fe006fdb9eb560544a08fe6cc.svg" download="bubble_bg_1.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>포트폴리오 버블 배경 2</h3>
+            <span class="filename">bubble_bg_2.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/ffda502dd08c711b13fa4e25c3f6d2d9e911699b.svg" alt="bubble_bg_2">
+            <br>
+            <a href="http://localhost:3845/assets/ffda502dd08c711b13fa4e25c3f6d2d9e911699b.svg" download="bubble_bg_2.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>포트폴리오 버블 배경 3</h3>
+            <span class="filename">bubble_bg_3.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/04249edafb4b58ec416be429c1257d58fea4da64.svg" alt="bubble_bg_3">
+            <br>
+            <a href="http://localhost:3845/assets/04249edafb4b58ec416be429c1257d58fea4da64.svg" download="bubble_bg_3.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>타임라인 화살표</h3>
+            <span class="filename">timeline_arrow.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/950f75914523b1794279887df732874068a123fd.svg" alt="timeline_arrow">
+            <br>
+            <a href="http://localhost:3845/assets/950f75914523b1794279887df732874068a123fd.svg" download="timeline_arrow.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>보라색 도트</h3>
+            <span class="filename">dot_purple.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/9684260ec5d211763764bf1b5d891d0b21986799.svg" alt="dot_purple">
+            <br>
+            <a href="http://localhost:3845/assets/9684260ec5d211763764bf1b5d891d0b21986799.svg" download="dot_purple.svg">다운로드</a>
+        </div>
+
+        <div class="card">
+            <h3>파란색 도트</h3>
+            <span class="filename">dot_blue.svg</span>
+            <br>
+            <img src="http://localhost:3845/assets/9d3d45801d20ac64cf3b3a6993ce91d7c3d131f5.svg" alt="dot_blue">
+            <br>
+            <a href="http://localhost:3845/assets/9d3d45801d20ac64cf3b3a6993ce91d7c3d131f5.svg" download="dot_blue.svg">다운로드</a>
+        </div>
+    </div>
+
+    <script>
+        // 이미지 로드 실패 시 안내
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                this.parentElement.insertAdjacentHTML('beforeend', 
+                    '<p style="color:red;font-size:12px;">⚠️ Figma 파일을 열어주세요</p>');
+            };
+        });
+    </script>
+</body>
+</html>
