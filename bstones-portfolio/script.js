@@ -107,14 +107,8 @@
         thumb.className = 'portfolio-card__thumb';
 
         const img = document.createElement('img');
-        const imgSrc = item.thumbnail || item.thumb || item.image || item.img || item.photo || item.picture || 'assets/portfolio_thumb_01.png';
-
-        // 이미지 URL이 상대경로인 경우 절대경로로 변환
-        if (imgSrc && !imgSrc.startsWith('http') && !imgSrc.startsWith('assets/')) {
-            img.src = 'http://renewal.bstones.co.kr' + (imgSrc.startsWith('/') ? imgSrc : '/' + imgSrc);
-        } else {
-            img.src = imgSrc;
-        }
+        const imgSrc = item.thumbnail || item.thumb || item.image || item.img || 'assets/portfolio_thumb_01.png';
+        img.src = imgSrc;
 
         img.alt = item.title || item.name || 'Portfolio Item';
         img.loading = 'lazy';
