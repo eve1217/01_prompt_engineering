@@ -1,20 +1,17 @@
 /**
  * Firebase Configuration
- *
- * Firebase 프로젝트 설정 후 아래 config 값을 실제 값으로 교체하세요.
- * Firebase Console → 프로젝트 설정 → 일반 → 웹 앱에서 확인할 수 있습니다.
+ * BSTONES Portfolio Admin
  */
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBkVa_YAihYV6tgKwf_nGxnGG2vCPsz5Tg",
+    authDomain: "bstones-portfolio-febaf.firebaseapp.com",
+    projectId: "bstones-portfolio-febaf",
+    storageBucket: "bstones-portfolio-febaf.firebasestorage.app",
+    messagingSenderId: "732525849289",
+    appId: "1:732525849289:web:3a0f7bf6893838977ebb18"
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const auth = firebase.auth();
-const storage = firebase.storage();

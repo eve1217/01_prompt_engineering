@@ -418,30 +418,30 @@
         btnSave.disabled = true;
         btnSave.textContent = 'Saving...';
 
-        // Upload images if selected
+        // Convert images to base64 Data URLs
         var thumbnailFile = document.getElementById('file-thumbnail').files[0];
         var detail1File = document.getElementById('file-detail1').files[0];
         var detail2File = document.getElementById('file-detail2').files[0];
 
-        var uploads = [];
+        var imageReads = [];
 
         if (thumbnailFile) {
-            uploads.push(uploadImage(thumbnailFile, 'portfolios/thumbnails/' + idx + '_thumb').then(function (url) {
-                return { field: 'thumbnail', url: url };
+            imageReads.push(readFileAsDataURL(thumbnailFile).then(function (dataUrl) {
+                return { field: 'thumbnail', url: dataUrl };
             }));
         }
         if (detail1File) {
-            uploads.push(uploadImage(detail1File, 'portfolios/details/' + idx + '_detail_1').then(function (url) {
-                return { field: 'detail_image_1', url: url };
+            imageReads.push(readFileAsDataURL(detail1File).then(function (dataUrl) {
+                return { field: 'detail_image_1', url: dataUrl };
             }));
         }
         if (detail2File) {
-            uploads.push(uploadImage(detail2File, 'portfolios/details/' + idx + '_detail_2').then(function (url) {
-                return { field: 'detail_image_2', url: url };
+            imageReads.push(readFileAsDataURL(detail2File).then(function (dataUrl) {
+                return { field: 'detail_image_2', url: dataUrl };
             }));
         }
 
-        Promise.all(uploads).then(function (results) {
+        Promise.all(imageReads).then(function (results) {
             var docData = {
                 idx: idx,
                 title: title,
@@ -452,7 +452,7 @@
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             };
 
-            // Add uploaded image URLs
+            // Add image Data URLs
             results.forEach(function (r) {
                 docData[r.field] = r.url;
             });
@@ -489,22 +489,7 @@
     function deleteItem(idx) {
         if (!confirm('Are you sure you want to delete this item?')) return;
 
-        db.collection('portfolios').doc(idx).get().then(function (doc) {
-            if (!doc.exists) return;
-            var data = doc.data();
-
-            // Delete images from Storage if they are Storage URLs
-            var deletes = [];
-            ['thumbnail', 'detail_image_1', 'detail_image_2'].forEach(function (field) {
-                if (data[field] && data[field].includes('firebasestorage')) {
-                    deletes.push(storage.refFromURL(data[field]).delete().catch(function () { }));
-                }
-            });
-
-            return Promise.all(deletes).then(function () {
-                return db.collection('portfolios').doc(idx).delete();
-            });
-        }).then(function () {
+        db.collection('portfolios').doc(idx).delete().then(function () {
             showNotification('Deleted successfully.', 'success');
             loadPortfolioList();
         }).catch(function (error) {
@@ -513,14 +498,13 @@
         });
     }
 
-    // === IMAGE UPLOAD MODULE ===
-    function uploadImage(file, storagePath) {
-        var extension = file.name.split('.').pop();
-        var fullPath = storagePath + '.' + extension;
-        var ref = storage.ref(fullPath);
-
-        return ref.put(file).then(function (snapshot) {
-            return snapshot.ref.getDownloadURL();
+    // === IMAGE MODULE (base64 Data URL) ===
+    function readFileAsDataURL(file) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.onload = function (e) { resolve(e.target.result); };
+            reader.onerror = function () { reject(new Error('Failed to read file')); };
+            reader.readAsDataURL(file);
         });
     }
 
