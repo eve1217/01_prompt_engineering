@@ -29,6 +29,9 @@
         console.log('✅ BSTONES Portfolio initialized successfully!');
     }
 
+    // 캐시된 포트폴리오 데이터 (상세 포함)
+    let portfolioCache = null;
+
     /**
      * 포트폴리오 데이터 로드
      */
@@ -40,39 +43,22 @@
             // 로딩 상태 표시
             portfolioGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #666;">Loading portfolio...</p>';
 
-            // API 호출
-            const response = await fetch('http://renewal.bstones.co.kr/api/portfolio/list');
+            // 로컬 JSON 파일에서 데이터 로드
+            const response = await fetch('data/portfolio.json');
 
             if (!response.ok) {
                 throw new Error('Failed to fetch portfolio data');
             }
 
             const data = await response.json();
+            portfolioCache = data;
 
-            console.log('API Response:', data);
+            console.log('Portfolio Data loaded:', data.list.length, 'items');
 
-            // 데이터 구조 확인 - data가 배열이 아니라 객체일 수 있음
-            let items = data;
+            const items = data.list;
 
-            // data.data, data.list, data.items 등 다양한 구조 지원
-            if (data.data) {
-                items = data.data;
-            } else if (data.list) {
-                items = data.list;
-            } else if (data.items) {
-                items = data.items;
-            } else if (data.portfolio) {
-                items = data.portfolio;
-            }
-
-            console.log('Portfolio Items:', items);
-
-            // 데이터 확인 및 렌더링
-            if (items && Array.isArray(items) && items.length > 0) {
+            if (items && items.length > 0) {
                 renderPortfolioItems(items);
-            } else if (items && !Array.isArray(items)) {
-                // 단일 객체인 경우 배열로 변환
-                renderPortfolioItems([items]);
             } else {
                 portfolioGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #666;">No portfolio items found.</p>';
             }
@@ -449,18 +435,17 @@
         modalContent.innerHTML = '<div class="modal__loading">Loading...</div>';
 
         try {
-            // API 호출
-            const response = await fetch(`http://renewal.bstones.co.kr/api/portfolio/detail?idx=${idx}`);
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch portfolio detail');
+            // 캐시된 데이터에서 상세 정보 로드
+            let detail = null;
+            if (portfolioCache && portfolioCache.details && portfolioCache.details[idx]) {
+                detail = portfolioCache.details[idx];
             }
 
-            const data = await response.json();
-            console.log('Portfolio Detail:', data);
+            if (!detail) {
+                throw new Error('Portfolio detail not found');
+            }
 
-            // 상세 데이터 렌더링
-            const detail = data.detail || data;
+            console.log('Portfolio Detail:', detail);
             renderModalContent(detail);
 
         } catch (error) {
