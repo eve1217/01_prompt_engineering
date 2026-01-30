@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Engine Pro - Clean Version</title>
+    <style>
+        :root {
+            --bg: #f8f9fa; --card: #ffffff; --text: #2c3e50; --border: #dee2e6;
+            --primary: #4a90e2; --accent: #2ecc71; --input-bg: #ffffff;
+        }
+        [data-theme='dark'] {
+            --bg: #121212; --card: #1e1e1e; --text: #e9ecef; --border: #333;
+            --primary: #6ab0ff; --accent: #4ade80; --input-bg: #2d2d2d;
+        }
+        body {
+            font-family: 'Pretendard', sans-serif; background: var(--bg); color: var(--text);
+            line-height: 1.6; margin: 0; padding: 40px 20px; transition: 0.3s;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .card { background: var(--card); border-radius: 16px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid var(--border); position: relative; }
+        h2 { margin-top: 0; font-size: 1.4rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        
+        .theme-switch { cursor: pointer; border: none; background: var(--card); font-size: 1.5rem; padding: 10px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        
+        /* 빌더 스타일 */
+        .builder-grid { display: grid; grid-template-columns: 140px 1fr; gap: 10px; margin-bottom: 10px; }
+        .builder-grid label { font-weight: 700; align-self: center; font-size: 0.9rem; }
+        .input-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        input, textarea { padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text); width: 100%; box-sizing: border-box; }
+        
+        .result-box { background: #f1f3f5; border: 2px dashed var(--primary); padding: 25px; border-radius: 12px; margin-top: 20px; white-space: pre-wrap; font-size: 1rem; line-height: 1.8; }
+        [data-theme='dark'] .result-box { background: #252525; }
+
+        .guide-text { background: #f0f7ff; padding: 25px; border-radius: 10px; border-left: 5px solid var(--primary); line-height: 1.8; white-space: pre-wrap; }
+        [data-theme='dark'] .guide-text { background: #1a2635; }
+        .skill-item { background: var(--bg); padding: 15px 20px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border); }
+
+        .btn { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .copy-small { color: var(--primary); font-size: 0.85rem; cursor: pointer; font-weight: bold; }
+
+        #toast { visibility: hidden; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 12px 30px; border-radius: 30px; z-index: 1000; transition: 0.3s; }
+        #toast.show { visibility: visible; bottom: 50px; }
+    </style>
+</head>
+<body>
+
+<div id="toast">✅ 복사되었습니다!</div>
+
+<div class="container">
+    <header>
+        <h1>🚀 Prompt Engineer Guide - Pro</h1>
+        <button class="theme-switch" onclick="toggleTheme()" id="theme-btn">🌞</button>
+    </header>
+
+    <div class="card">
+        <h2>🏗️ 프롬프트 빌더 (키워드 입력형)</h2>
+        <div class="builder-grid">
+            <label>👤 페르소나</label>
+            <div class="input-row">
+                <input type="text" id="r1" placeholder="역할/직업/전문 분야" oninput="gen()">
+                <input type="text" id="r2" placeholder="특정 경험/경력" oninput="gen()">
+            </div>
+            <label>📝 배경 정보</label>
+            <div class="input-row">
+                <input type="text" id="b1" placeholder="상황" oninput="gen()">
+                <input type="text" id="b2" placeholder="타겟 독자" oninput="gen()">
+                <input type="text" id="b3" placeholder="최종 목표" oninput="gen()">
+            </div>
+            <label>🎯 핵심 과업</label>
+            <div class="input-row">
+                <input type="text" id="t1" placeholder="수행할 작업" oninput="gen()">
+                <input type="text" id="t2" placeholder="세부 사항" oninput="gen()">
+            </div>
+            <label>🚫 제약 사항</label>
+            <div class="input-row">
+                <input type="text" id="c1" placeholder="분량" oninput="gen()">
+                <input type="text" id="c2" placeholder="문체" oninput="gen()">
+                <input type="text" id="c3" placeholder="금지어/포함 단어" oninput="gen()">
+            </div>
+            <label>💡 예시</label>
+            <div class="input-row">
+                <input type="text" id="e1" placeholder="샘플 데이터 1" oninput="gen()">
+                <input type="text" id="e2" placeholder="샘플 데이터 2" oninput="gen()">
+            </div>
+            <label>📊 출력 형식</label>
+            <input type="text" id="f1" placeholder="결과 형태 (표/JSON 등)" oninput="gen()">
+        </div>
+        
+        <div class="result-box" id="output">키워드를 입력하면 프롬프트가 여기에 생성됩니다.</div>
+        <button class="btn" style="margin-top:20px; width: 100%;" onclick="copy('output')">📋 완성된 프롬프트 복사</button>
+    </div>
+
+    <div class="card">
+        <h2>💡 실제 적용 예시 (블로그 포스팅용)</h2>
+        <button class="btn" style="position:absolute; top:30px; right:30px;" onclick="copy('blog-example')">복사</button>
+        <div class="guide-text" id="blog-example">👤 페르소나: 너는 10년 차 IT 전문 블로거이자 마케팅 전문가야. 어렵고 복잡한 기술을 초등학생도 이해할 수 있게 쉽게 설명하는 능력이 있어.
+📝 배경 정보: 인공지능에 처음 입문하는 일반인들을 위해 '프롬프트 엔지니어링'이 왜 중요한지 설명하는 글을 쓰려고 해.
+🎯 핵심 과업: 프롬프트 엔지니어링의 정의, 중요성 3가지, 그리고 배우면 좋은 점을 요약해서 블로그 포스팅 초안을 작성해줘.
+🚫 제약 사항: 전문 용어는 최소화하고 비유(예: 요리 레시피)를 사용해줘. 전체 분량은 공백 포함 1,000자 내외, 말투는 친근한 '~해요'체로 작성할 것.
+📊 출력 형식: 
+1. 시선을 끄는 제목 (3가지 후보)
+2. 서론-본론-결론 구조
+3. 본문의 핵심 내용은 리스트(Bullet point) 형태로 정리</div>
+    </div>
+
+    <div class="card">
+        <h2>🛠️ 더 강력하게 만드는 '한 줄 스킬'</h2>
+        <div class="skill-item">
+            <span>논리력 강화: "단계별로 생각해서(Think step by step) 최종 답변을 내줘."</span>
+            <span class="copy-small" onclick="copyRaw(`단계별로 생각해서(Think step by step) 최종 답변을 내줘.`)">복사</span>
+        </div>
+        <div class="skill-item">
+            <span>비판적 검토: "작성한 내용을 스스로 검토해서 논리적 오류가 있다면 수정해서 알려줘."</span>
+            <span class="copy-small" onclick="copyRaw(`작성한 내용을 스스로 검토해서 논리적 오류가 있다면 수정해서 알려줘.`)">복사</span>
+        </div>
+        <div class="skill-item">
+            <span>질문 유도: "답변을 하기 전에, 나에게 추가로 필요한 정보가 있다면 먼저 질문해줘."</span>
+            <span class="copy-small" onclick="copyRaw(`답변을 하기 전에, 나에게 추가로 필요한 정보가 있다면 먼저 질문해줘.`)">복사</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📓 개인 프롬프트 메모장</h2>
+        <textarea id="memo-in" rows="4" placeholder="나만의 프롬프트를 저장하세요..."></textarea>
+        <button class="btn" style="margin-top:10px;" onclick="saveMemo()">💾 저장</button>
+        <div id="memo-list" style="margin-top:20px;"></div>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        const b = document.body;
+        const isDark = b.getAttribute('data-theme') === 'dark';
+        b.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        document.getElementById('theme-btn').innerText = isDark ? '🌞' : '🌙';
+    }
+
+    function gen() {
+        const v = (id) => document.getElementById(id).value || `[${document.getElementById(id).placeholder}]`;
+        const prompt = 
+`[👤 페르소나]: 너는 ${v('r1')} 전문가야. ${v('r2')}을 가지고 있어.
+[📝 배경 정보]: 현재 ${v('b1')}에 처해 있고, 이 글의 대상은 ${v('b2')}야. 목적은 ${v('b3')}야.
+[🎯 핵심 과업]: ${v('t1')}을 해줘. 구체적으로 ${v('t2')}을 포함해야 해.
+[🚫 제약 사항]: 글자 수는 ${v('c1')} 이내로, 말투는 ${v('c2')}로 해줘. ${v('c3')}를 지켜줘.
+[💡 예시]: 예를 들어, ${v('e1')}, ${v('e2')}와 같은 느낌으로 작성해줘.
+[📊 출력 형식]: 결과는 ${v('f1')} 형태로 보여줘.`;
+        document.getElementById('output').innerText = prompt;
+    }
+
+    function saveMemo() {
+        const val = document.getElementById('memo-in').value;
+        if(!val) return;
+        const memos = JSON.parse(localStorage.getItem('memos') || '[]');
+        memos.push({id:Date.now(), text:val});
+        localStorage.setItem('memos', JSON.stringify(memos));
+        document.getElementById('memo-in').value = '';
+        loadMemos();
+    }
+
+    function loadMemos() {
+        const memos = JSON.parse(localStorage.getItem('memos') || '[]');
+        document.getElementById('memo-list').innerHTML = memos.reverse().map(m => `
+            <div class="skill-item" style="flex-direction:column; align-items:flex-start;">
+                <p style="margin:0 0 10px 0;">${m.text}</p>
+                <div>
+                    <span class="copy-small" onclick="copyRaw(\`${m.text}\`)">📋 복사</span> | 
+                    <span class="copy-small" style="color:#ff6b6b" onclick="delMemo(${m.id})">🗑️ 삭제</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function delMemo(id) {
+        let memos = JSON.parse(localStorage.getItem('memos') || '[]');
+        localStorage.setItem('memos', JSON.stringify(memos.filter(m => m.id !== id)));
+        loadMemos();
+    }
+
+    function copy(id) { copyRaw(document.getElementById(id).innerText); }
+    function copyRaw(t) {
+        navigator.clipboard.writeText(t).then(() => {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        });
+    }
+
+    window.onload = loadMemos;
+</script>
+</body>
+</html>
