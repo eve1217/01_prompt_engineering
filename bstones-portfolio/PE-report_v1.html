@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 리포트 | 비스톤스</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --card-bg: #1e293b;
+                --text-main: #f1f5f9;
+                --text-muted: #94a3b8;
+                --border-color: #334155;
+                --accent-bg: #1e293b;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Header */
+        header { border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 40px; }
+        h1 { font-size: 2.2rem; color: var(--text-main); margin-bottom: 10px; }
+        .tagline { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Section Style */
+        section { margin-bottom: 40px; }
+        h2 { 
+            font-size: 1.4rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 20px; 
+            color: var(--primary-color);
+        }
+
+        /* Grid Layout */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .info-card { 
+            background: var(--accent-bg); 
+            padding: 20px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border-color);
+        }
+        .info-card h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; }
+        .info-card p { font-weight: 600; font-size: 1.1rem; }
+
+        /* Quote Box */
+        .quote-box {
+            background: #f1f5f9;
+            border-left: 5px solid var(--primary-color);
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        .quote-box h4 { margin-bottom: 10px; color: var(--primary-color); }
+        .dark-mode .quote-box { background: #334155; }
+
+        /* URL Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 15px; border-bottom: 1px solid var(--border-color); }
+        th { color: var(--text-muted); font-weight: 500; }
+        a { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 8px;
+        }
+
+        /* Footer */
+        footer { text-align: center; margin-top: 50px; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 600px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🚀 AI 활용 비스톤스 소개 페이지 제작 리포트</h1>
+        <p class="tagline">AI 도구를 활용한 효율적인 웹 개발 및 업무 자동화 결과 보고서</p>
+    </header>
+
+    <section>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🎯 Project Goal</h3>
+                <p>비스톤스 회사 소개 페이지 AI 활용 제작</p>
+            </div>
+            <div class="info-card">
+                <h3>⏱️ Production Period</h3>
+                <p>디자인 및 개발 완료 (1일 이내)</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>🛠️ Development Stack</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Claude.ai (Pro)</h3>
+                <p>Opus 4.5 (코딩) / Sonnet 4.5 (정보)</p>
+            </div>
+            <div class="info-card">
+                <h3>Gemini (Google AI Pro)</h3>
+                <p>Gemini 3 (검색, 코딩, 생성)</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>💡 AI Recommendation</h2>
+        <div class="quote-box">
+            <h4>🎯 20년차 개발자 관점의 추천</h4>
+            <p>"현재 워크플로에서는 <strong>Claude Sonnet 4.5</strong>가 가장 적합합니다. 웹 개발 작업(HTML/CSS/JS) 시 빠른 피드백과 픽셀 퍼펙트 구현이 가능하며, 속도와 품질의 균형이 매우 뛰어납니다."</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>📝 Key Insights</h2>
+        <p>프로젝트 진행 시 <strong>프롬프트의 디테일 수준</strong>에 따라 결과물의 완성도가 확연하게 차이남을 확인했습니다. 초기 단순 요청 대비 상세한 제약 사항을 포함한 최종 버전의 생산성이 월등히 높았습니다.</p>
+    </section>
+
+    <section>
+        <h2>🔗 Deliverables</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>항목</th>
+                    <th>URL 및 정보</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>프로젝트 리포트</td>
+                    <td><a href="#">현재 페이지</a></td>
+                </tr>
+                <tr>
+                    <td>프롬프트 가이드</td>
+                    <td><a href="https://eve1217.github.io/01_prompt_engineering/bstones-portfolio/PE-guide_v7.html" target="_blank">가이드 확인하기</a></td>
+                </tr>
+                <tr>
+                    <td>비스톤스 소개페이지</td>
+                    <td><a href="https://eve1217.github.io/01_prompt_engineering/bstones-portfolio/" target="_blank">페이지 바로가기</a></td>
+                </tr>
+                <tr>
+                    <td>데이터 마이그레이션</td>
+                    <td><a href="https://eve1217.github.io/01_prompt_engineering/bstones-portfolio/migrate.html" target="_blank">마이그레이션 결과</a></td>
+                </tr>
+                <tr>
+                    <td>어드민 시스템</td>
+                    <td>
+                        <a href="https://eve1217.github.io/01_prompt_engineering/bstones-portfolio/admin.html" target="_blank">관리자 페이지</a><br>
+                        <small style="color: var(--text-muted);">ID: eve@bstones.co.kr / PW: 1q2w3e4r</small>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        © 2026 BSTONES. All rights reserved.
+    </footer>
+</div>
+
+</body>
+</html>
