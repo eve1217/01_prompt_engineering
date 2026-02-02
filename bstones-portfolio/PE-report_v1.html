@@ -16,24 +16,23 @@
             --accent-bg: #eff6ff;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #0f172a;
-                --card-bg: #1e293b;
-                --text-main: #f1f5f9;
-                --text-muted: #94a3b8;
-                --border-color: #334155;
-                --accent-bg: #1e293b;
-            }
+        [data-theme='dark'] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --accent-bg: #1e293b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Pretendard', sans-serif; 
-            background-color: var(--bg-color); 
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             padding: 40px 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container { 
@@ -82,7 +81,7 @@
             margin: 20px 0;
         }
         .quote-box h4 { margin-bottom: 10px; color: var(--primary-color); }
-        .dark-mode .quote-box { background: #334155; }
+        [data-theme='dark'] .quote-box { background: #334155; }
 
         /* URL Table */
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
@@ -101,6 +100,15 @@
             margin-left: 8px;
         }
 
+        /* Theme Switch */
+        .theme-switch {
+            cursor: pointer; border: none; background: var(--card-bg);
+            font-size: 1.5rem; padding: 10px; border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: fixed; top: 20px; right: 20px; z-index: 100;
+            transition: 0.3s;
+        }
+
         /* Footer */
         footer { text-align: center; margin-top: 50px; color: var(--text-muted); font-size: 0.9rem; }
 
@@ -111,6 +119,8 @@
     </style>
 </head>
 <body>
+
+<button class="theme-switch" onclick="toggleTheme()" id="theme-btn">🌞</button>
 
 <div class="container">
     <header>
@@ -199,6 +209,15 @@
         © 2026 BSTONES. All rights reserved.
     </footer>
 </div>
+
+<script>
+    function toggleTheme() {
+        const b = document.body;
+        const isDark = b.getAttribute('data-theme') === 'dark';
+        b.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        document.getElementById('theme-btn').innerText = isDark ? '🌞' : '🌙';
+    }
+</script>
 
 </body>
 </html>
