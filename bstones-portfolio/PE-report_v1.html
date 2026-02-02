@@ -46,7 +46,7 @@
         }
 
         /* Header */
-        header { border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 40px; }
+        header { border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-start; }
         h1 { font-size: 2.2rem; color: var(--text-main); margin-bottom: 10px; }
         .tagline { color: var(--text-muted); font-size: 1.1rem; }
 
@@ -105,7 +105,6 @@
             cursor: pointer; border: none; background: var(--card-bg);
             font-size: 1.5rem; padding: 10px; border-radius: 50%;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: fixed; top: 20px; right: 20px; z-index: 100;
             transition: 0.3s;
         }
 
@@ -120,12 +119,13 @@
 </head>
 <body>
 
-<button class="theme-switch" onclick="toggleTheme()" id="theme-btn">🌞</button>
-
 <div class="container">
     <header>
-        <h1>🚀 AI 활용 비스톤스 소개 페이지 제작 리포트</h1>
-        <p class="tagline">AI 도구를 활용한 효율적인 웹 개발 및 업무 자동화 결과 보고서</p>
+        <div>
+            <h1>🚀 AI 활용 비스톤스 소개 페이지 제작 리포트</h1>
+            <p class="tagline">AI 도구를 활용한 효율적인 웹 개발 및 업무 자동화 결과 보고서</p>
+        </div>
+        <button class="theme-switch" onclick="toggleTheme()" id="theme-btn">🌞</button>
     </header>
 
     <section>
